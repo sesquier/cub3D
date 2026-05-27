@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 18:01:51 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 15:25:42 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 16:34:18 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void	process_lines_pass2(t_game *game, int fd)
 	map_started = false;
 	row = 0;
 	line = get_next_line(fd);
-	// if (!line)
-	// 	free(line);
 	while (line)
 	{
 		if (!map_started && is_map_line(line))

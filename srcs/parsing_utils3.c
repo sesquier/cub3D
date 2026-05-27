@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:11:46 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 15:08:20 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 17:11:02 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 static void	flood_fill(t_flood *f, int x, int y, t_game *game, char **grid_copy)
 {
+	t_parse_error	err;
+
+	err.fd = -1;
+	err.line = NULL;
+	err.grid_copy = grid_copy;
 	if (x < 0 || y < 0 || x >= f->width || y >= f->height)
-		parse_error(game, -1, NULL, grid_copy, "Error: map is not closed");
+		parse_error(game, "Error: map is not closed", err);
 	if (f->grid[y][x] == '1' || f->grid[y][x] == 'V')
 		return ;
 	if (f->grid[y][x] == ' ')
-		parse_error(game, -1, NULL, grid_copy, "Error: map is not closed");
+		parse_error(game, "Error: map is not closed", err);
 	f->grid[y][x] = 'V';
 	flood_fill(f, x + 1, y, game, grid_copy);
 	flood_fill(f, x - 1, y, game, grid_copy);

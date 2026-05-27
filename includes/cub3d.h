@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:26:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 14:50:22 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 17:13:46 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define ROT_SPEED 3.0
 # define PLAYER_RADIUS 0.2
 
+typedef struct s_game t_game;
+typedef struct s_parse_error t_parse_error;
+
 typedef struct s_image
 {
 	void	*img_ptr;
@@ -40,6 +43,13 @@ typedef struct s_image
 	int		line_length;
 	int		endian;
 }	t_image;
+
+typedef struct s_parse_error
+{
+	int		fd;
+	char	*line;
+	char	**grid_copy;
+}	t_parse_error;
 
 typedef struct s_map
 {
@@ -130,7 +140,7 @@ void		parse(t_game *game, int ac, char **av);
 void		file_name_checker(char *file, t_game *game);
 void		parse_pass1(t_game *game, char *file);
 void		parse_pass2(t_game *game, char *file);
-void		parse_error(t_game *game, int fd, char *line, char **grid_copy, char *msg);
+void		parse_error(t_game *game, char *msg, t_parse_error err);
 bool		is_map_line(char *line);
 void		line_parser(char *line, t_game *game, int fd);
 void		put_infos(t_game *game, char *idx, char *infos);

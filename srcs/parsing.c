@@ -6,13 +6,14 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:49:47 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 15:25:42 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 16:48:16 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	process_map_line(t_game *game, char *line, int fd);
+static void	map_parse_error(t_game *game, char *line, int fd, char *msg);
 void		parse_pass1(t_game *game, char *file);
 void		parse_pass2(t_game *game, char *file);
 
@@ -33,36 +34,38 @@ void	parse(t_game *game, int ac, char **av)
 	check_map_closed(game);
 }
 
+static void	map_parse_error(t_game *game, char *line, int fd, char *msg)
+{
+	t_parse_error	err;
+
+	err.fd = fd;
+	err.line = line;
+	err.grid_copy = NULL;
+	parse_error(game, msg, err);
+}
+
 static void	process_map_line(t_game *game, char *line, int fd)
 {
-	int	i;
+	int				i;
 
 	i = 0;
 	game->map.height += 1;
 	while (line[i] && line[i] != '\n')
 	{
 		if (!ft_strchr("01NSEW ", line[i]))
-			parse_error(game, fd, line, NULL, "Error: invalid character in map");
+			map_parse_error(game, line, fd,
+				"Error: invalid character in map");
 		if (ft_strchr("NSEW", line[i]))
 		{
 			if (game->player.dir != 0)
-				parse_error(game, fd, line, NULL, "Error: multiple players in map");
+				map_parse_error(game, line, fd,
+					"Error: multiple players in map");
 			game->player.dir = line[i];
 		}
 		i++;
 	}
 	if (i > game->map.width)
 		game->map.width = i;
-}
-
-int	skip_spaces(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
-		i++;
-	return (i);
 }
 
 static void	process_lines_pass1(t_game *game, int fd)

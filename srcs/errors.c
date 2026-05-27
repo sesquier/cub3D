@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 19:01:06 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 15:25:42 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 16:38:56 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	err_incorrect_file(char *file)
 
 static void	free_grid_copy(char **grid_copy)
 {
-	int i;
+	int	i;
 
 	if (!grid_copy)
 		return ;
@@ -31,14 +31,14 @@ static void	free_grid_copy(char **grid_copy)
 	free(grid_copy);
 }
 
-void	parse_error(t_game *game, int fd, char *line, char **grid_copy, char *msg)
+void	parse_error(t_game *game, char *msg, t_parse_error err)
 {
-	if (line)
-		free(line);
-	if (grid_copy)
-		free_grid_copy(grid_copy);
-	if (fd >= 0)
-		close(fd);
+	if (err.line)
+		free(err.line);
+	if (err.grid_copy)
+		free_grid_copy(err.grid_copy);
+	if (err.fd >= 0)
+		close(err.fd);
 	ft_putendl_fd(msg, 2);
 	free_game(game);
 	exit(EXIT_FAILURE);
