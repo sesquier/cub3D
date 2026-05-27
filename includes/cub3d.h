@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:26:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 18:52:47 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 19:58:41 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@
 # define ROT_SPEED 3.0
 # define PLAYER_RADIUS 0.2
 
-typedef struct s_game t_game;
-typedef struct s_parse_error t_parse_error;
-typedef struct s_flood t_flood;
+typedef struct s_game			t_game;
+typedef struct s_parse_error	t_parse_error;
+typedef struct s_flood			t_flood;
+typedef struct s_rgb_ctx		t_rgb_ctx;
 
 typedef struct s_image
 {
@@ -65,6 +66,14 @@ typedef struct s_flood
 	int		width;
 	int		height;
 }	t_flood;
+
+typedef struct s_rgb_ctx
+{
+	t_game			*game;
+	t_parse_error	err;
+	char			*idx;
+	int				count;
+}	t_rgb_ctx;
 
 typedef struct s_texture
 {
@@ -151,7 +160,8 @@ void		check_config_complete(t_game *game);
 void		check_player(t_game *game);
 void		alloc_map(t_game *game);
 void		check_map_closed(t_game *game);
-void		colors_infos(t_game *game, int fd, char *line, char *idx, char *num, int count);
+void		colors_infos(char *num, t_rgb_ctx rgb);
+void		rgb_error(t_rgb_ctx rgb, char *msg);
 void		take_numbers(t_game *game, char *line, char *idx, int fd);
 void		fill_map_line(t_game *game, char *line, int row);
 void		process_lines_pass2(t_game *game, int fd);

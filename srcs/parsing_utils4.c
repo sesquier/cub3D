@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:39:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 16:58:37 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 19:56:26 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,17 @@ void	check_player(t_game *game)
 		free_game(game);
 		exit(EXIT_FAILURE);
 	}
+}
+
+void	colors_infos(char *num, t_rgb_ctx rgb)
+{
+	int	n;
+
+	n = ft_atoi(num);
+	if (n < 0 || n > 255)
+		rgb_error(rgb, "Error: RGB value out of range [0-255]");
+	if (rgb.idx[0] == 'F')
+		rgb.game->floor_color[rgb.count] = n;
+	else if (rgb.idx[0] == 'C')
+		rgb.game->ceil_color[rgb.count] = n;
 }
