@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:11:20 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 17:13:46 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 18:26:53 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	colors_infos(t_game *game, int fd, char *line, char *idx, char *num, int count)
 {
-	int			n;
+	int				n;
 	t_parse_error	err;
 
 	n = ft_atoi(num);
@@ -52,9 +52,9 @@ static int	read_num_token(char *line, int i, char *num, t_game *game, int fd)
 
 void	take_numbers(t_game *game, char *line, char *idx, int fd)
 {
-	int			i;
-	int			count;
-	char		num[4];
+	int				i;
+	int				count;
+	char			num[4];
 	t_parse_error	err;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:26:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 17:13:46 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 18:52:47 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 typedef struct s_game t_game;
 typedef struct s_parse_error t_parse_error;
+typedef struct s_flood t_flood;
 
 typedef struct s_image
 {
@@ -133,6 +134,7 @@ typedef struct s_game
 	t_player	player;
 	double		last_time;
 	double		delta_time;
+	t_flood		*f;
 }	t_game;
 
 // Parsing
