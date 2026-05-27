@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 19:01:06 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 14:50:22 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:25:42 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ void	parse_error(t_game *game, int fd, char *line, char **grid_copy, char *msg)
 	if (grid_copy)
 		free_grid_copy(grid_copy);
 	if (fd >= 0)
-	{
-		gnl_clear(fd);
 		close(fd);
-	}
 	ft_putendl_fd(msg, 2);
 	free_game(game);
 	exit(EXIT_FAILURE);

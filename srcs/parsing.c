@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:49:47 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 14:50:22 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:25:42 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,5 @@ void	parse_pass1(t_game *game, char *file)
 	if (fd == -1)
 		err_incorrect_file(file);
 	process_lines_pass1(game, fd);
-	gnl_clear(fd);
 	close(fd);
 }
