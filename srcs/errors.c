@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 19:01:06 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:50:22 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,34 @@ void	err_incorrect_file(char *file)
 {
 	ft_putstr_fd("Error: cannot open file: ", 2);
 	ft_putendl_fd(file, 2);
+	exit(EXIT_FAILURE);
+}
+
+static void	free_grid_copy(char **grid_copy)
+{
+	int i;
+
+	if (!grid_copy)
+		return ;
+	i = 0;
+	while (grid_copy[i])
+		free(grid_copy[i++]);
+	free(grid_copy);
+}
+
+void	parse_error(t_game *game, int fd, char *line, char **grid_copy, char *msg)
+{
+	if (line)
+		free(line);
+	if (grid_copy)
+		free_grid_copy(grid_copy);
+	if (fd >= 0)
+	{
+		gnl_clear(fd);
+		close(fd);
+	}
+	ft_putendl_fd(msg, 2);
+	free_game(game);
 	exit(EXIT_FAILURE);
 }
 

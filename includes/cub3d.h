@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:26:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:50:22 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,16 +130,17 @@ void		parse(t_game *game, int ac, char **av);
 void		file_name_checker(char *file, t_game *game);
 void		parse_pass1(t_game *game, char *file);
 void		parse_pass2(t_game *game, char *file);
+void		parse_error(t_game *game, int fd, char *line, char **grid_copy, char *msg);
 bool		is_map_line(char *line);
-void		line_parser(char *line, t_game *game);
+void		line_parser(char *line, t_game *game, int fd);
 void		put_infos(t_game *game, char *idx, char *infos);
 void		take_infos(t_game *game, char *line, char *idx);
 void		check_config_complete(t_game *game);
 void		check_player(t_game *game);
 void		alloc_map(t_game *game);
 void		check_map_closed(t_game *game);
-void		colors_infos(t_game *game, char *idx, char *num, int count);
-void		take_numbers(t_game *game, char *line, char *idx);
+void		colors_infos(t_game *game, int fd, char *line, char *idx, char *num, int count);
+void		take_numbers(t_game *game, char *line, char *idx, int fd);
 void		fill_map_line(t_game *game, char *line, int row);
 void		process_lines_pass2(t_game *game, int fd);
 int			skip_spaces(char *line);

@@ -6,13 +6,13 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:49:47 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:50:22 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	process_map_line(t_game *game, char *line);
+static void	process_map_line(t_game *game, char *line, int fd);
 void		parse_pass1(t_game *game, char *file);
 void		parse_pass2(t_game *game, char *file);
 
@@ -33,7 +33,7 @@ void	parse(t_game *game, int ac, char **av)
 	check_map_closed(game);
 }
 
-static void	process_map_line(t_game *game, char *line)
+static void	process_map_line(t_game *game, char *line, int fd)
 {
 	int	i;
 
@@ -42,19 +42,11 @@ static void	process_map_line(t_game *game, char *line)
 	while (line[i] && line[i] != '\n')
 	{
 		if (!ft_strchr("01NSEW ", line[i]))
-		{
-			ft_putendl_fd("Error: invalid character in map", 2);
-			free_game(game);
-			exit(EXIT_FAILURE);
-		}
+			parse_error(game, fd, line, NULL, "Error: invalid character in map");
 		if (ft_strchr("NSEW", line[i]))
 		{
 			if (game->player.dir != 0)
-			{
-				ft_putendl_fd("Error: multiple players in map", 2);
-				free_game(game);
-				exit(EXIT_FAILURE);
-			}
+				parse_error(game, fd, line, NULL, "Error: multiple players in map");
 			game->player.dir = line[i];
 		}
 		i++;
@@ -85,9 +77,9 @@ static void	process_lines_pass1(t_game *game, int fd)
 		if (!map_started && is_map_line(line))
 			map_started = true;
 		if (map_started)
-			process_map_line(game, line);
+			process_map_line(game, line, fd);
 		else
-			line_parser(line, game);
+			line_parser(line, game, fd);
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -6,13 +6,13 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 18:01:51 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 14:50:22 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	line_parser(char *line, t_game *game)
+void	line_parser(char *line, t_game *game, int fd)
 {
 	int	start;
 
@@ -28,9 +28,9 @@ void	line_parser(char *line, t_game *game)
 	else if (ft_strncmp(line + start, "EA ", 3) == 0)
 		take_infos(game, line + start, "EA");
 	else if (ft_strncmp(line + start, "F ", 2) == 0)
-		take_numbers(game, line + start, "F");
+		take_numbers(game, line + start, "F", fd);
 	else if (ft_strncmp(line + start, "C ", 2) == 0)
-		take_numbers(game, line + start, "C");
+		take_numbers(game, line + start, "C", fd);
 }
 
 void	fill_map_line(t_game *game, char *line, int row)
