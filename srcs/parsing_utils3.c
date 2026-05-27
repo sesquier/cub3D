@@ -6,33 +6,25 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:11:46 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 15:08:20 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	flood_fill(t_flood *f, int x, int y, t_game *game)
+static void	flood_fill(t_flood *f, int x, int y, t_game *game, char **grid_copy)
 {
 	if (x < 0 || y < 0 || x >= f->width || y >= f->height)
-	{
-		ft_putendl_fd("Error: map is not closed", 2);
-		free_game(game);
-		exit(EXIT_FAILURE);
-	}
+		parse_error(game, -1, NULL, grid_copy, "Error: map is not closed");
 	if (f->grid[y][x] == '1' || f->grid[y][x] == 'V')
 		return ;
 	if (f->grid[y][x] == ' ')
-	{
-		ft_putendl_fd("Error: map is not closed", 2);
-		free_game(game);
-		exit(EXIT_FAILURE);
-	}
+		parse_error(game, -1, NULL, grid_copy, "Error: map is not closed");
 	f->grid[y][x] = 'V';
-	flood_fill(f, x + 1, y, game);
-	flood_fill(f, x - 1, y, game);
-	flood_fill(f, x, y + 1, game);
-	flood_fill(f, x, y - 1, game);
+	flood_fill(f, x + 1, y, game, grid_copy);
+	flood_fill(f, x - 1, y, game, grid_copy);
+	flood_fill(f, x, y + 1, game, grid_copy);
+	flood_fill(f, x, y - 1, game, grid_copy);
 }
 
 static void	free_grid(char **grid)
@@ -58,7 +50,7 @@ static void	search_and_flood(t_flood *f, char **grid_copy, t_game *game)
 		{
 			if (ft_strchr("NSEW", grid_copy[y][x]))
 			{
-				flood_fill(f, x, y, game);
+				flood_fill(f, x, y, game, grid_copy);
 				free_grid(grid_copy);
 				return ;
 			}
