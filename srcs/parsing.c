@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:49:47 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/06 18:08:38 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ void	parse(t_game *game, int ac, char **av)
 	if (ac != 2)
 	{
 		ft_putendl_fd("Error: usage is ./cub3d <map.cub>", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
-	file_name_checker(av[1]);
+	file_name_checker(av[1], game);
 	parse_pass1(game, av[1]);
 	check_config_complete(game);
 	check_player(game);
@@ -43,6 +44,7 @@ static void	process_map_line(t_game *game, char *line)
 		if (!ft_strchr("01NSEW ", line[i]))
 		{
 			ft_putendl_fd("Error: invalid character in map", 2);
+			free_game(game);
 			exit(EXIT_FAILURE);
 		}
 		if (ft_strchr("NSEW", line[i]))
@@ -50,6 +52,7 @@ static void	process_map_line(t_game *game, char *line)
 			if (game->player.dir != 0)
 			{
 				ft_putendl_fd("Error: multiple players in map", 2);
+				free_game(game);
 				exit(EXIT_FAILURE);
 			}
 			game->player.dir = line[i];
@@ -98,5 +101,6 @@ void	parse_pass1(t_game *game, char *file)
 	if (fd == -1)
 		err_incorrect_file(file);
 	process_lines_pass1(game, fd);
+	gnl_clear(fd);
 	close(fd);
 }

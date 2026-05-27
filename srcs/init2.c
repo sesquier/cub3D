@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 15:25:25 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/06 16:49:53 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/26 19:56:42 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,25 @@ void	init_tex(t_game *game)
 	if (init_north(game))
 	{
 		ft_putendl_fd("Error: failed to load north texture", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	if (init_south(game))
 	{
 		ft_putendl_fd("Error: failed to load south texture", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	if (init_west(game))
 	{
 		ft_putendl_fd("Error: failed to load west texture", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	if (init_east(game))
 	{
 		ft_putendl_fd("Error: failed to load east texture", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 }

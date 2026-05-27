@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 11:21:23 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/13 17:45:56 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 12:09:21 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <stdarg.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 
 int		ft_atoi(const char *nptr);
 long	ft_atol(const char *str);
@@ -95,6 +97,7 @@ char	*ft_strdup1(char *s);
 size_t	ft_strlen1(char *s);
 char	*ft_strjoin1(char *s1, char *s2);
 char	*ft_strchr1(char *s, int c);
+void	gnl_clear(int fd);
 
 /*ft_printf*/
 int		ft_printf(const char *format, ...);

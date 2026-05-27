@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:26:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/13 17:26:00 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct s_game
 
 // Parsing
 void		parse(t_game *game, int ac, char **av);
-void		file_name_checker(char *file);
+void		file_name_checker(char *file, t_game *game);
 void		parse_pass1(t_game *game, char *file);
 void		parse_pass2(t_game *game, char *file);
 bool		is_map_line(char *line);

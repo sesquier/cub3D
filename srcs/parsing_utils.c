@@ -6,13 +6,13 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 17:50:31 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/06 17:14:53 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	file_name_checker(char *file)
+void	file_name_checker(char *file, t_game *game)
 {
 	int	i;
 	int	dot_count;
@@ -34,6 +34,7 @@ void	file_name_checker(char *file)
 		|| file[dot_pos + 4] != '\0')
 	{
 		ft_putendl_fd("Error: usage is <config_file.cub>", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -95,18 +96,21 @@ void	check_config_complete(t_game *game)
 		|| !game->west.path || !game->east.path)
 	{
 		ft_putendl_fd("Error: missing texture path", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	if (game->floor_color[0] == -1 || game->floor_color[1] == -1
 		|| game->floor_color[2] == -1)
 	{
 		ft_putendl_fd("Error: missing or invalid floor color", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	if (game->ceil_color[0] == -1 || game->ceil_color[1] == -1
 		|| game->ceil_color[2] == -1)
 	{
 		ft_putendl_fd("Error: missing or invalid ceiling color", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 }

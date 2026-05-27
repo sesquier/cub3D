@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 17:39:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/06 17:59:12 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	alloc_map(t_game *game)
 	if (!game->map.grid)
 	{
 		ft_putendl_fd("Error: malloc failed", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
@@ -29,6 +30,7 @@ void	alloc_map(t_game *game)
 		if (!game->map.grid[i])
 		{
 			ft_putendl_fd("Error: malloc failed", 2);
+			free_game(game);
 			exit(EXIT_FAILURE);
 		}
 		ft_memset(game->map.grid[i], ' ', game->map.width);
@@ -47,6 +49,7 @@ char	**alloc_grid_copy(t_game *game)
 	if (!grid_copy)
 	{
 		ft_putendl_fd("Error: malloc failed", 2);
+		free_game(game);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;

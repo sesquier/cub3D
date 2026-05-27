@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 18:01:51 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/06 18:05:28 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/27 12:24:49 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	process_lines_pass2(t_game *game, int fd)
 	map_started = false;
 	row = 0;
 	line = get_next_line(fd);
+	// if (!line)
+	// 	free(line);
 	while (line)
 	{
 		if (!map_started && is_map_line(line))
@@ -83,5 +85,6 @@ void	parse_pass2(t_game *game, char *file)
 	if (fd == -1)
 		err_incorrect_file(file);
 	process_lines_pass2(game, fd);
+	gnl_clear(fd);
 	close(fd);
 }
