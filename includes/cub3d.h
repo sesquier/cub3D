@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:26:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 19:58:41 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 16:12:46 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,8 @@ void		parse_pass2(t_game *game, char *file);
 void		parse_error(t_game *game, char *msg, t_parse_error err);
 bool		is_map_line(char *line);
 void		line_parser(char *line, t_game *game, int fd);
-void		put_infos(t_game *game, char *idx, char *infos);
-void		take_infos(t_game *game, char *line, char *idx);
+void		put_infos(t_game *game, char *idx, char *infos, t_parse_error err);
+void		take_infos(t_game *game, char *line, char *idx, int fd);
 void		check_config_complete(t_game *game);
 void		check_player(t_game *game);
 void		alloc_map(t_game *game);
@@ -184,6 +184,7 @@ void		init_tex(t_game *game);
 void		init_player_vectors(t_game *game);
 double		get_current_time(void);
 void		set_delta_time(t_game *game, double current);
+void		free_mlx(t_game *game);
 
 // DDA
 void		init_ray(t_game *game, t_ray *ray, int x);

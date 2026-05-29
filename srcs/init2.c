@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 15:25:25 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/26 19:56:42 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 16:07:38 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,30 +60,49 @@ int	init_east(t_game *game)
 	return (0);
 }
 
+// void	init_tex(t_game *game)
+// {
+// 	t_parse_error	err;
+// 	if (init_north(game))
+// 	{
+// 		err.fd = -1;
+// 		err.line = NULL;
+// 		err.grid_copy = NULL;
+// 		parse_error(game, "Error: failed to load north texture", err);
+// 	}
+// 	if (init_south(game))
+// 	{
+// 		err.fd = -1;
+// 		err.line = NULL;
+// 		err.grid_copy = NULL;
+// 		parse_error(game, "Error: failed to load south texture", err);
+// 	}
+// 	if (init_west(game))
+// 	{
+// 		err.fd = -1;
+// 		err.line = NULL;
+// 		err.grid_copy = NULL;
+// 		parse_error(game, "Error: failed to load west texture", err);
+// 	}
+// 	if (init_east(game))
+// 	{
+// 		err.fd = -1;
+// 		err.line = NULL;
+// 		err.grid_copy = NULL;
+// 		parse_error(game, "Error: failed to load east texture", err);
+// 	}
+// }
+
 void	init_tex(t_game *game)
 {
-	if (init_north(game))
+	t_parse_error	err;
+
+	if (init_north(game) || init_south(game) || init_west(game)
+		|| init_east(game))
 	{
-		ft_putendl_fd("Error: failed to load north texture", 2);
-		free_game(game);
-		exit(EXIT_FAILURE);
-	}
-	if (init_south(game))
-	{
-		ft_putendl_fd("Error: failed to load south texture", 2);
-		free_game(game);
-		exit(EXIT_FAILURE);
-	}
-	if (init_west(game))
-	{
-		ft_putendl_fd("Error: failed to load west texture", 2);
-		free_game(game);
-		exit(EXIT_FAILURE);
-	}
-	if (init_east(game))
-	{
-		ft_putendl_fd("Error: failed to load east texture", 2);
-		free_game(game);
-		exit(EXIT_FAILURE);
+		err.fd = -1;
+		err.line = NULL;
+		err.grid_copy = NULL;
+		parse_error(game, "Error: failed to load a texture", err);
 	}
 }

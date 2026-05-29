@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 19:01:06 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 16:38:56 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 15:55:55 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,33 @@ void	parse_error(t_game *game, char *msg, t_parse_error err)
 		free_grid_copy(err.grid_copy);
 	if (err.fd >= 0)
 		close(err.fd);
+	if (game->mlx_ptr)
+		free_mlx(game);
 	ft_putendl_fd(msg, 2);
 	free_game(game);
 	exit(EXIT_FAILURE);
+}
+
+void	free_mlx(t_game *game)
+{
+	if (!game || !game->mlx_ptr)
+		return ;
+	if (game->render.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->render.img_ptr);
+	if (game->north.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->north.img_ptr);
+	if (game->south.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->south.img_ptr);
+	if (game->west.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->west.img_ptr);
+	if (game->east.img_ptr)
+		mlx_destroy_image(game->mlx_ptr, game->east.img_ptr);
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	mlx_destroy_display(game->mlx_ptr);
+	free(game->mlx_ptr);
+	game->mlx_ptr = NULL;
+	game->win_ptr = NULL;
 }
 
 void	free_game(t_game *game)

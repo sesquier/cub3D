@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 18:01:51 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/27 16:34:18 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 15:44:54 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	line_parser(char *line, t_game *game, int fd)
 		return ;
 	start = skip_spaces(line);
 	if (ft_strncmp(line + start, "NO ", 3) == 0)
-		take_infos(game, line + start, "NO");
+		take_infos(game, line, "NO", fd);
 	else if (ft_strncmp(line + start, "SO ", 3) == 0)
-		take_infos(game, line + start, "SO");
+		take_infos(game, line, "SO", fd);
 	else if (ft_strncmp(line + start, "WE ", 3) == 0)
-		take_infos(game, line + start, "WE");
+		take_infos(game, line, "WE", fd);
 	else if (ft_strncmp(line + start, "EA ", 3) == 0)
-		take_infos(game, line + start, "EA");
+		take_infos(game, line, "EA", fd);
 	else if (ft_strncmp(line + start, "F ", 2) == 0)
 		take_numbers(game, line + start, "F", fd);
 	else if (ft_strncmp(line + start, "C ", 2) == 0)

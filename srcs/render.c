@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 15:59:21 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/06 18:07:12 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 16:19:35 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	render(void *param)
 
 	x = 0;
 	game = (t_game *)param;
+	current = get_current_time();
+	set_delta_time(game, current);
+	update_player(game);
 	while (x < game->win_width)
 	{
-		current = get_current_time();
-		set_delta_time(game, current);
-		update_player(game);
 		cast_ray(game, &ray, x);
 		x++;
 	}
