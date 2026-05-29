@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by sesquier, abedeaux.*
+*This project has been created as part of the 42 curriculum by sesquier, ale-coss.*
 
 # cub3D — My first RayCaster with miniLibX
 
