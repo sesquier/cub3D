@@ -6,11 +6,11 @@
 #    By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/21 15:26:47 by sesquier          #+#    #+#              #
-#    Updated: 2026/05/29 16:19:04 by sesquier         ###   ########.fr        #
+#    Updated: 2026/05/29 17:13:50 by sesquier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 
 LIBFT_DIR = LIBFT
 MINILIBX_DIR = minilibx-linux

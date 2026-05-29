@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:26:44 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/29 16:12:46 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 17:29:35 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # include "../minilibx-linux/mlx.h"
 # include "../LIBFT/libft.h"
 
-# define WIDTH	2560
-# define HEIGHT	1440
+# define WIDTH	1920
+# define HEIGHT	1080
 # define MOVE_SPEED 3.0
 # define ROT_SPEED 3.0
 # define PLAYER_RADIUS 0.2

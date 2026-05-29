@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 15:26:49 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/29 15:48:09 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 17:30:20 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	init_game(t_game *game)
 {
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
-	game->win_width = 0;
-	game->win_height = 0;
+	game->win_width = WIDTH;
+	game->win_height = HEIGHT;
 	game->render.img_ptr = NULL;
 	game->render.pixels = NULL;
 	game->render.bits_per_pixels = 0;
@@ -63,8 +63,8 @@ int	init_mlx(t_game *game)
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		return (1);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, 1920, 1080, "cub3D");
-	game->render.img_ptr = mlx_new_image(game->mlx_ptr, 1920, 1080);
+	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+	game->render.img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
 	game->render.pixels = mlx_get_data_addr(game->render.img_ptr,
 			&game->render.bits_per_pixels,
 			&game->render.line_length,

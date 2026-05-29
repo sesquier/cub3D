@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 15:26:40 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/06 17:02:40 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 17:30:46 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	main(int ac, char **av)
 	init_game(&game);
 	parse(&game, ac, av);
 	init_mlx(&game);
-	game.win_width = 1920;
-	game.win_height = 1080;
 	init_tex(&game);
 	init_player_vectors(&game);
 	mlx_hook(game.win_ptr, 2, KeyPressMask, (int (*)())handle_keypress, &game);

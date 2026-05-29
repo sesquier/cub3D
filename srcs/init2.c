@@ -6,7 +6,7 @@
 /*   By: sesquier <sesquier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 15:25:25 by sesquier          #+#    #+#             */
-/*   Updated: 2026/05/29 16:07:38 by sesquier         ###   ########.fr       */
+/*   Updated: 2026/05/29 16:47:15 by sesquier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,39 +59,6 @@ int	init_east(t_game *game)
 			&game->east.endian);
 	return (0);
 }
-
-// void	init_tex(t_game *game)
-// {
-// 	t_parse_error	err;
-// 	if (init_north(game))
-// 	{
-// 		err.fd = -1;
-// 		err.line = NULL;
-// 		err.grid_copy = NULL;
-// 		parse_error(game, "Error: failed to load north texture", err);
-// 	}
-// 	if (init_south(game))
-// 	{
-// 		err.fd = -1;
-// 		err.line = NULL;
-// 		err.grid_copy = NULL;
-// 		parse_error(game, "Error: failed to load south texture", err);
-// 	}
-// 	if (init_west(game))
-// 	{
-// 		err.fd = -1;
-// 		err.line = NULL;
-// 		err.grid_copy = NULL;
-// 		parse_error(game, "Error: failed to load west texture", err);
-// 	}
-// 	if (init_east(game))
-// 	{
-// 		err.fd = -1;
-// 		err.line = NULL;
-// 		err.grid_copy = NULL;
-// 		parse_error(game, "Error: failed to load east texture", err);
-// 	}
-// }
 
 void	init_tex(t_game *game)
 {
